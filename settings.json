@@ -1,0 +1,10 @@
+{
+  "permissions": {
+	"allow": [
+	  "Bash(pnpm init)",
+	  "Bash(pnpm run test:*)",
+	  "Bash(pnpm run lint)"
+	]
+  },
+  "model": "opus"
+}
