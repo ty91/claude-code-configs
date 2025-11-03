@@ -1,10 +1,13 @@
 {
+  "includeCoAuthoredBy": false,
   "permissions": {
-	"allow": [
-	  "Bash(pnpm init)",
-	  "Bash(pnpm run test:*)",
-	  "Bash(pnpm run lint)"
-	]
+    "allow": [
+      "Bash(pnpm init)",
+      "Bash(pnpm run test:*)",
+      "Bash(pnpm run lint)",
+      "WebSearch",
+      "WebFetch"
+    ]
   },
-  "model": "opus"
+  "alwaysThinkingEnabled": true
 }
