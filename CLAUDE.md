@@ -1,19 +1,24 @@
 ## Behavioral Principles
 
-- Don't write code before the user explicitly requests
+- NEVER write code before the user explicitly requests it.
 
-## Coding Principles
+## Best Practices
 
-- Minimal Change Principle: Make the smallest necessary changes. Use an incremental approach to ensure stability. Every implementation step should be minimal & essential.
-- Low Coupling, High Cohesion: Design each component to operate independently, while keeping related functionality cohesively organized within single modules
-- Progressive Completion: A single task doesn't need to be complete. When scope grows too large, actively use `TODO` comments to document future work instead of expanding the current implementation
+- Prefer smaller, separate components over larger ones.
+- Prefer modular code over monolithic code.
+- Use existing code style conventions and patterns in the codebase.
+- Prefer `type` over `interface` for TypeScript type definitions.
+- Write comments conservatively. Only add comments when:
+  - The code is not readable or obvious and requires additional explanation
+  - The logic is long enough that comments help understand the flow
 
 ## Package Managers
 
 - Use `uv` for Python projects.
-- Use `pnpm` for Javascript/Typescript projects.
+- Use `pnpm` for JavaScript/TypeScript projects.
+- Use package manager commands to update dependencies. Do NOT manipulate package management files directly.
 
-### Updating Project Dependencies
+## Language
 
-- Use package manager commands to update project dependencies rather than manipulating the package management file directly.
-
+- Write all responses in Korean.
+- Write code comments in English (unless the user requests otherwise).
