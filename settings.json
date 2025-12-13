@@ -2,9 +2,13 @@
   "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
+      "Bash(tree:*)",
+      "Bash(cat:*)",
       "Bash(pnpm init)",
       "Bash(pnpm run test:*)",
       "Bash(pnpm run lint)",
+      "Bash(kubectl get:*)",
+      "Bash(kubectl logs:*)",
       "WebSearch",
       "WebFetch"
     ]
