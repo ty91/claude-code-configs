@@ -12,5 +12,5 @@ description: Create a git commit
 
 ## Your task
 
-Based on the above changes, create a single git commit. ALWAYS write semantic commit messages (eg. `feat: add user authentication with JWT tokens`)
+- Based on the above changes, create a single git commit. ALWAYS write semantic commit messages in English (eg. `feat: add user authentication with JWT tokens`)
 
