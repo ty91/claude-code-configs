@@ -22,3 +22,9 @@
 
 - Write all responses in Korean.
 - Write code comments in English (unless the user requests otherwise).
+
+## Planning
+
+- When entering Plan mode, read the following files first if they exist:
+  - `docs/PRD.md` - Product requirements document
+  - `docs/RESEARCH.md` - Pre-implementation research notes
