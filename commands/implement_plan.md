@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Glob, Grep, Edit, Write, Task, TodoWrite, Bash, AskUserQuestion
+allowed-tools: Read, Glob, Grep, Edit, Write, Task, TodoWrite, Bash(pnpm:*), Bash(npm:*), Bash(uv:*), Bash(python:*), Bash(node:*), Bash(npx:*), Bash(git:*), Bash(ls:*), Bash(tree:*), Bash(find:*), Bash(cat:*), Bash(mkdir:*), AskUserQuestion
 description: Execute approved implementation plans phase by phase
 ---
 
