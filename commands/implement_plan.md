@@ -39,10 +39,11 @@ How should I proceed?
 ## Verification Approach
 
 After implementing a phase:
-- Run the success criteria checks
+- Run the automated verification checks (tests, typecheck, lint)
 - Fix any issues before proceeding
 - Update your progress in both the plan and your todos
 - Check off completed items in the plan file using Edit
+- **Do NOT perform manual verification yourself** - leave those checkboxes for the user to verify
 
 ## Working Process
 
@@ -50,6 +51,7 @@ After implementing a phase:
    - Complete one phase entirely before moving to next
    - Run all automated checks for that phase
    - Update plan checkboxes as you go
+   - Mark the Phase header checkbox as complete when all items in that phase are done
 
 2. **When You Get Stuck**:
    - First, ensure you've read and understood all relevant code

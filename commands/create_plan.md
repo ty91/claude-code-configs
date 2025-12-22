@@ -53,9 +53,9 @@ Here's my proposed plan structure:
 [1-2 sentence summary]
 
 ## Implementation Phases:
-1. [Phase name] - [what it accomplishes]
-2. [Phase name] - [what it accomplishes]
-3. [Phase name] - [what it accomplishes]
+- [ ] 1. [Phase name] - [what it accomplishes]
+- [ ] 2. [Phase name] - [what it accomplishes]
+- [ ] 3. [Phase name] - [what it accomplishes]
 
 Does this phasing make sense?
 ```
@@ -82,7 +82,7 @@ Check existing plan files to determine next sequence number, then write the plan
 ## Implementation Approach
 [High-level strategy and reasoning]
 
-## Phase 1: [Descriptive Name]
+## - [ ] Phase 1: [Descriptive Name]
 
 ### Overview
 [What this phase accomplishes]
@@ -111,7 +111,7 @@ Check existing plan files to determine next sequence number, then write the plan
 
 ---
 
-## Phase 2: [Descriptive Name]
+## - [ ] Phase 2: [Descriptive Name]
 [Similar structure...]
 
 ## Testing Strategy
