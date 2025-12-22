@@ -62,7 +62,7 @@ Does this phasing make sense?
 
 ### Step 4: Detailed Plan Writing
 
-Check existing plan files to determine next sequence number, then write the plan to `docs/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit sequential number (001, 002, etc.):
+Write the plan to `docs/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit sequential number (001, 002, etc.):
 
 ```markdown
 # [Feature/Task Name] Implementation Plan
@@ -148,4 +148,5 @@ Check existing plan files to determine next sequence number, then write the plan
 4. **Be Practical**: Focus on incremental, testable changes
 5. **Track Progress**: Use TodoWrite throughout planning
 6. **No Open Questions**: Resolve all questions before finalizing plan
+7. **Ignore Other Plans**: Do NOT read or reference other existing plan files in `docs/plans/`
 
