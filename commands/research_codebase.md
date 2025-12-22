@@ -1,5 +1,5 @@
 ---
-allowed-tools: Read, Glob, Grep, Task, TodoWrite, Bash(ls:*), Bash(tree:*), Bash(find:*), Bash(cat:*), WebSearch, WebFetch
+allowed-tools: Read, Glob, Grep, Task, TodoWrite, Bash(ls:*), Bash(tree:*), Bash(find:*), Bash(cat:*), WebSearch, WebFetch, AskUserQuestion
 description: Research codebase and external resources for implementation planning
 ---
 
