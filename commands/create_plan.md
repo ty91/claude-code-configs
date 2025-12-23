@@ -91,11 +91,7 @@ Write the plan to `docs/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit 
 
 #### 1. [Component/File Group]
 **File**: `path/to/file.ext`
-**Changes**: [Summary of changes]
-
-```[language]
-// Specific code to add/modify
-```
+**Changes**: [Summary of changes - describe what to add/modify in plain language]
 
 ### Success Criteria:
 
@@ -156,5 +152,10 @@ Write the plan to `docs/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit 
 6. **No Open Questions**: Resolve all questions before finalizing plan
 7. **Ignore Other Plans**: Do NOT read or reference other existing plan files in `docs/plans/`
 8. **Cite Sources**: At the end of the plan document, include a "References" section listing all sources consulted during planning (e.g., files read, documentation, external resources, related issues/PRs)
-9. **No Unsolicited Implementation**: NEVER start implementing without explicit user request. Do NOT ask the user if they want to start implementation - just finish the plan and wait for their instruction
+9. **Minimize Code in Plans**: Plans are blueprints, not implementations. Only include code blocks when:
+   - Defining API contracts or interfaces that must be exact
+   - Logic is too tricky to explain clearly in words
+   - A brief example significantly clarifies the intended approach
+
+   For everything else, describe changes in plain language (e.g., "Add a validation function that checks X and Y" rather than writing the function).
 
