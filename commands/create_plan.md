@@ -91,7 +91,7 @@ Write the plan to `docs/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit 
 
 #### 1. [Component/File Group]
 **File**: `path/to/file.ext`
-**Changes**: [Summary of changes - describe what to add/modify in plain language]
+**Changes**: [Summary of changes]
 
 ### Success Criteria:
 
