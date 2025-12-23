@@ -132,6 +132,12 @@ Write the plan to `docs/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit 
 
 ## Migration Notes
 [If applicable, how to handle existing data/systems]
+
+## References
+- [List of files read during planning]
+- [Documentation consulted]
+- [External resources referenced]
+- [Related issues/PRs]
 ```
 
 ### Step 5: Review and Iterate
@@ -149,4 +155,6 @@ Write the plan to `docs/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit 
 5. **Track Progress**: Use TodoWrite throughout planning
 6. **No Open Questions**: Resolve all questions before finalizing plan
 7. **Ignore Other Plans**: Do NOT read or reference other existing plan files in `docs/plans/`
+8. **Cite Sources**: At the end of the plan document, include a "References" section listing all sources consulted during planning (e.g., files read, documentation, external resources, related issues/PRs)
+9. **No Unsolicited Implementation**: NEVER start implementing without explicit user request. Do NOT ask the user if they want to start implementation - just finish the plan and wait for their instruction
 
