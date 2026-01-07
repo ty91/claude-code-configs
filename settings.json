@@ -13,5 +13,18 @@
       "WebFetch"
     ]
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/format.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
