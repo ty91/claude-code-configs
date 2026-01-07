@@ -44,6 +44,7 @@ After implementing a phase:
 - Update your progress in both the plan and your todos
 - Check off completed items in the plan file using Edit
 - **Do NOT perform manual verification yourself** - leave those checkboxes for the user to verify
+- **If the phase has manual verification items**: Stop and ask the user to verify before proceeding to the next phase. Manual verification must be completed before moving forward.
 
 ## Working Process
 
