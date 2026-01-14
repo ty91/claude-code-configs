@@ -5,7 +5,7 @@ description: Execute approved implementation plans phase by phase
 
 # Implement Plan
 
-You are tasked with implementing an approved technical plan from `docs/plans/`. These plans contain phases with specific changes and success criteria.
+You are tasked with implementing an approved technical plan from `thoughts/plans/`. These plans contain phases with specific changes and success criteria.
 
 ## Getting Started
 

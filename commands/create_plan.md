@@ -62,7 +62,7 @@ Does this phasing make sense?
 
 ### Step 4: Detailed Plan Writing
 
-Write the plan to `docs/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit sequential number (001, 002, etc.):
+Write the plan to `thoughts/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit sequential number (001, 002, etc.):
 
 ```markdown
 # [Feature/Task Name] Implementation Plan
@@ -150,7 +150,7 @@ Write the plan to `docs/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit 
 4. **Be Practical**: Focus on incremental, testable changes
 5. **Track Progress**: Use TodoWrite throughout planning
 6. **No Open Questions**: Resolve all questions before finalizing plan
-7. **Ignore Other Plans**: Do NOT read or reference other existing plan files in `docs/plans/`
+7. **Ignore Other Plans**: Do NOT read or reference other existing plan files in `thoughts/plans/`
 8. **Cite Sources**: At the end of the plan document, include a "References" section listing all sources consulted during planning (e.g., files read, documentation, external resources, related issues/PRs)
 9. **Minimize Code in Plans**: Plans are blueprints, not implementations. Only include code blocks when:
    - Defining API contracts or interfaces that must be exact

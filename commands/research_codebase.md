@@ -82,7 +82,7 @@ Then wait for the user's research query.
 
 6. **Save and present findings:**
    - Check existing research files to determine next sequence number
-   - Save to `docs/research/NNN_topic.md` where NNN is a 3-digit sequential number (001, 002, etc.)
+   - Save to `thoughts/research/NNN_topic.md` where NNN is a 3-digit sequential number (001, 002, etc.)
    - Present a concise summary of findings to the user
    - Include key file references for easy navigation
 
