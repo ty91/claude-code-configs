@@ -10,8 +10,28 @@
       "Bash(kubectl get:*)",
       "Bash(kubectl logs:*)",
       "WebSearch",
-      "WebFetch"
-    ]
+      "WebFetch",
+      "mcp__plugin_context7_context7__*",
+      "Bash(pnpm add:*)",
+      "Bash(curl:*)",
+      "Bash(pnpm tsc:*)",
+      "Bash(git log:*)",
+      "Bash(pnpm codegen:*)",
+      "Bash(pnpm test:run:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm build:*)",
+      "Bash(xargs cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "Bash(pnpm test)",
+      "Bash(grep:*)",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs",
+      "Bash(pnpm typecheck:*)"
+    ],
+    "deny": [],
+    "ask": [],
+    "defaultMode": "default"
   },
   "hooks": {
     "PostToolUse": [
@@ -29,7 +49,13 @@
   "enabledPlugins": {
     "code-simplifier@claude-plugins-official": true,
     "frontend-design@claude-plugins-official": true,
-    "context7@claude-plugins-official": true
+    "context7@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
   },
-  "alwaysThinkingEnabled": true
+  "alwaysThinkingEnabled": true,
+  "language": "Korean",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  }
 }

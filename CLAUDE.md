@@ -20,6 +20,5 @@
 
 ## Language
 
-- Write all responses in Korean.
 - Write code comments in English (unless the user requests otherwise).
 
