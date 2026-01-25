@@ -1,7 +1,7 @@
 ---
 name: loop
 description: File-based task planning and execution workflow. Supports new/plan/run modes.
-argument-hint: "[new | plan <NNN> | run <NNN>]"
+argument-hint: "[new | update [NNN] | run <NNN>]"
 disable-model-invocation: true
 allowed-tools:
   - Read
@@ -40,7 +40,7 @@ You are operating in **Loop mode**, a file-based task planning and execution sys
 Parse `$ARGUMENTS` to determine the mode:
 
 - `new` → Start a new task
-- `plan <NNN>` → Refine an existing plan
+- `update [NNN]` → Update task files (NNN optional)
 - `run <NNN>` → Execute a plan
 
 Arguments: $ARGUMENTS
@@ -174,18 +174,29 @@ Does this phasing make sense? Should any phases be split, combined, or reordered
 
 ---
 
-## Mode: `plan <NNN>`
+## Mode: `update [NNN]`
 
-Refine an existing task plan.
+Update task files. Behavior depends on context:
 
-### Step 1: Load Current State
+### Scenario Detection
+
+1. **Session starts with `/loop update NNN`** → Interactive update mode
+2. **Mid-conversation `/loop update`** → Context-based update mode
+
+---
+
+### Scenario A: Interactive Update (`/loop update NNN`)
+
+Use when session starts with this command.
+
+#### Step 1: Load Current State
 
 Read all three files:
 - `.loop/<NNN>/plan.md`
 - `.loop/<NNN>/findings.md`
 - `.loop/<NNN>/progress.md`
 
-### Step 2: Summarize Current State
+#### Step 2: Summarize Current State
 
 Present to user:
 ```
@@ -210,19 +221,19 @@ Present to user:
 What changes would you like to make to this plan?
 ```
 
-### Step 3: Gather Feedback
+#### Step 3: Gather Feedback
 
 - Ask what changes are needed
 - Clarify any ambiguities
 - If user wants to add research, spawn Task agents
 
-### Step 4: Update Files
+#### Step 4: Update Files
 
 - Modify plan.md with new/changed phases
 - Add new research to findings.md
 - Note plan changes in progress.md with timestamp
 
-### Step 5: Confirm Changes
+#### Step 5: Confirm Changes
 
 ```
 I've updated the plan with these changes:
@@ -230,6 +241,66 @@ I've updated the plan with these changes:
 - [Change 2]
 
 Would you like to make any other adjustments?
+```
+
+---
+
+### Scenario B: Context-Based Update (`/loop update`)
+
+Use when called mid-conversation without a task number.
+
+#### Step 1: Determine Target Task
+
+1. Check if a task number was mentioned in the conversation → use that task
+2. If no task mentioned → ask user which task to update:
+   ```bash
+   ls .loop/ 2>/dev/null | sort -n
+   ```
+   ```
+   Available tasks:
+   - 001: [goal from plan.md]
+   - 002: [goal from plan.md]
+
+   Which task would you like to update?
+   ```
+
+#### Step 2: Analyze Conversation
+
+Review the conversation to identify:
+- New discoveries or research findings
+- Changes to the plan or approach
+- Progress updates or completed items
+- Errors encountered and resolutions
+- Decisions made
+
+#### Step 3: Update Appropriate Files
+
+Based on conversation content, update relevant files:
+
+| Content Type | Target File | Section |
+|:-------------|:------------|:--------|
+| New discoveries | findings.md | Research Findings |
+| Plan changes | plan.md | Phases / Approach |
+| Progress updates | progress.md | Session Log |
+| Errors encountered | progress.md | Error Log |
+| Decisions made | findings.md | Technical Decisions |
+
+#### Step 4: Present Summary
+
+```
+I've updated task <NNN> files based on our conversation:
+
+**findings.md**:
+- Added: [discovery 1]
+- Added: [discovery 2]
+
+**plan.md**:
+- Modified: [change description]
+
+**progress.md**:
+- Logged: [action taken]
+
+Would you like me to adjust anything?
 ```
 
 ---
@@ -404,7 +475,8 @@ Customize them for the specific task.
 | Situation | Action |
 |:----------|:-------|
 | Task number not found | List available tasks in `.loop/`, ask user to choose |
-| Invalid arguments | Show usage: `/loop new`, `/loop plan <NNN>`, `/loop run <NNN>` |
+| Invalid arguments | Show usage: `/loop new`, `/loop update [NNN]`, `/loop run <NNN>` |
+| `/loop update` without NNN, no task in context | List available tasks, ask user to choose |
 | Verification failure | Log error, attempt fix, escalate after 3 strikes |
 | Plan-reality mismatch | Report with "Issue in Phase [N]" format, wait for user |
 | Need clarification | Ask specific questions, don't guess |
@@ -413,6 +485,7 @@ Customize them for the specific task.
 
 ```
 /loop new              # Start planning a new task
-/loop plan 001         # Refine the plan for task 001
+/loop update 001       # Update task 001 files interactively
+/loop update           # Update current task from conversation context
 /loop run 001          # Execute task 001
 ```
