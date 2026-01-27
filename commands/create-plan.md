@@ -33,6 +33,9 @@ Then wait for the user's input.
 
 Use `codebase-researcher` whenever you need to understand the codebase. Research findings are automatically saved to `.tasks/{branch}/findings/`.
 
+**Core principle: One research = One focused question**
+Each codebase-researcher call should answer ONE specific question. If you have multiple questions, spawn multiple researchers in parallel.
+
 **When to research:**
 - Before making design decisions
 - When exploring unfamiliar areas of the codebase
@@ -41,20 +44,23 @@ Use `codebase-researcher` whenever you need to understand the codebase. Research
 
 **Good practices:**
 ```
-# Focused, specific questions (Good)
-"로그인 플로우에서 세션이 어떻게 관리되는지 분석해줘"
-"ImagePickerBottomSheet 컴포넌트의 구조와 사용 패턴을 분석해줘"
-"GraphQL mutation 에러 핸들링 패턴을 찾아줘"
+# Good: Single focused question per researcher
+"How is session managed in the login flow?"
+"Analyze the structure and usage patterns of ImagePickerBottomSheet component"
+"Find GraphQL mutation error handling patterns"
 
-# Too broad (Avoid)
-"인증 시스템 전체를 분석해줘"
-"앱 아키텍처를 설명해줘"
+# Bad: Multiple questions bundled together (split these into parallel calls)
+"1. Analyze login flow 2. How sessions work 3. Error handling patterns"
+
+# Bad: Too broad
+"Analyze the entire authentication system"
+"Explain the app architecture"
 ```
 
 **Important notes:**
-- codebase-researcher has a limited context window—split broad topics into focused queries
-- Multiple research documents are fine; each becomes a reference for the plan
-- When you have multiple research topics, run them in parallel for efficiency
+- codebase-researcher has a limited context window—never bundle multiple questions
+- Each research topic should have its own researcher and its own output file
+- Multiple small research documents are better than one large document
 - Research documents contain **facts about existing code**, not design proposals
 
 ## Process Steps

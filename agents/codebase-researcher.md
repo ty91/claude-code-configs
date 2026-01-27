@@ -41,6 +41,30 @@ When researching a topic, explore from these four perspectives:
 - Note external libraries and their usage patterns
 - Understand what would be affected by changes
 
+## Scope Check (Do This First)
+
+Before starting research, check if the request is too broad. **Reject and ask for clarification** if:
+
+- The request contains multiple distinct questions (e.g., "1. ... 2. ... 3. ...")
+- The topic would require analyzing more than one major feature or system
+- The question is too vague (e.g., "Explain the app architecture", "How does authentication work")
+
+**If the scope is too broad, respond immediately with:**
+```
+This research request is too broad. Please split into focused, single-topic questions:
+
+Current request: [summarize the request]
+
+Suggested splits:
+- [specific question 1]
+- [specific question 2]
+- [specific question 3]
+
+Each question should be sent to a separate codebase-researcher in parallel.
+```
+
+**Do not proceed with research if scope is too broad.** This is an early return.
+
 ## Research Process
 
 1. **Analyze the question**: Break down into specific investigation areas
