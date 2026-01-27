@@ -251,18 +251,11 @@ Use when called mid-conversation without a task number.
 
 #### Step 1: Determine Target Task
 
-1. Check if a task number was mentioned in the conversation → use that task
-2. If no task mentioned → ask user which task to update:
-   ```bash
-   ls .loop/ 2>/dev/null | sort -n
-   ```
-   ```
-   Available tasks:
-   - 001: [goal from plan.md]
-   - 002: [goal from plan.md]
+Infer the task number from session start:
 
-   Which task would you like to update?
-   ```
+1. **Session started with `/loop run NNN` or `/loop update NNN`** → use that NNN
+2. **Session started with `/loop new`** → use the task number created at the beginning
+3. **Otherwise** → error: "Cannot determine task number. Session must start with /loop new, /loop run <NNN>, or /loop update <NNN>"
 
 #### Step 2: Analyze Conversation
 
@@ -476,7 +469,7 @@ Customize them for the specific task.
 |:----------|:-------|
 | Task number not found | List available tasks in `.loop/`, ask user to choose |
 | Invalid arguments | Show usage: `/loop new`, `/loop update [NNN]`, `/loop run <NNN>` |
-| `/loop update` without NNN, no task in context | List available tasks, ask user to choose |
+| `/loop update` without NNN, session not started with loop command | Error: session must start with /loop new, /loop run, or /loop update |
 | Verification failure | Log error, attempt fix, escalate after 3 strikes |
 | Plan-reality mismatch | Report with "Issue in Phase [N]" format, wait for user |
 | Need clarification | Ask specific questions, don't guess |
