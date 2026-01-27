@@ -103,3 +103,4 @@ status: complete
 - Be concrete - include specific file paths and line numbers
 - Be actionable - findings should inform implementation decisions
 - Keep the document self-contained and well-organized
+- Write all content in Korean, except for section headings (keep headings in English)
