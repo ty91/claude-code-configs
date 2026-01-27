@@ -7,6 +7,12 @@ description: Create detailed implementation plans through interactive process
 
 You are tasked with creating detailed implementation plans through an interactive, iterative process. You should be skeptical, thorough, and work collaboratively with the user to produce high-quality technical specifications.
 
+## Context
+
+- Git branch: !`git branch --show-current`
+
+Convert slashes to hyphens for the directory name (e.g., `feature/auth` → `feature-auth`). This determines the plan location: `.tasks/{branch-name}/plan.md`
+
 ## Initial Response
 
 When this command is invoked, respond with:
@@ -39,9 +45,12 @@ Then wait for the user's input.
 ### Step 2: Research & Discovery
 
 1. **Create a research todo list** using TodoWrite to track exploration tasks
-2. **Spawn parallel sub-tasks for comprehensive research**
-3. **Wait for ALL sub-tasks to complete** before proceeding
-4. **Present findings and design options** with pros/cons
+2. **Spawn codebase-researcher for comprehensive research**:
+   - codebase-researcher covers all four perspectives: Location, Implementation, Patterns, and Dependencies
+   - It synthesizes findings into a structured document at `.tasks/{branch}/findings/`
+   - **IMPORTANT**: codebase-researcher has limited context window. Pass clear, focused topics rather than broad, ambiguous ones. If the research scope is wide, split into multiple focused research tasks
+3. **Wait for research to complete** before proceeding
+4. **Review the research document** and present findings with design options and pros/cons
 
 ### Step 3: Plan Structure Development
 
@@ -62,7 +71,7 @@ Does this phasing make sense?
 
 ### Step 4: Detailed Plan Writing
 
-Write the plan to `thoughts/plans/NNN_{descriptive_name}.md` where NNN is a 3-digit sequential number (001, 002, etc.):
+Write the plan to `.tasks/{branch-name}/plan.md` (where slashes in branch name are converted to hyphens):
 
 ```markdown
 # [Feature/Task Name] Implementation Plan
@@ -150,7 +159,7 @@ Write the plan to `thoughts/plans/NNN_{descriptive_name}.md` where NNN is a 3-di
 4. **Be Practical**: Focus on incremental, testable changes
 5. **Track Progress**: Use TodoWrite throughout planning
 6. **No Open Questions**: Resolve all questions before finalizing plan
-7. **Ignore Other Plans**: Do NOT read or reference other existing plan files in `thoughts/plans/`
+7. **Ignore Other Plans**: Do NOT read or reference other existing plan files in `.tasks/`
 8. **Cite Sources**: At the end of the plan document, include a "References" section listing all sources consulted during planning (e.g., files read, documentation, external resources, related issues/PRs)
 9. **Minimize Code in Plans**: Plans are blueprints, not implementations. Only include code blocks when:
    - Defining API contracts or interfaces that must be exact
