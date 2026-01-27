@@ -196,3 +196,4 @@ Write the plan to `.tasks/{branch-name}/plan.md` (where slashes in branch name a
    - A brief example significantly clarifies the intended approach
    For everything else, describe changes in plain language (e.g., "Add a validation function that checks X and Y" rather than writing the function).
 10. **Research Before Planning**: Use codebase-researcher to understand the codebase before making design decisions. Research findings in `.tasks/{branch}/findings/` must be referenced in the plan's References section.
+11. **No Plan Mode Tools**: Do NOT use `EnterPlanMode` or `ExitPlanMode` tools. This command handles planning independently.
