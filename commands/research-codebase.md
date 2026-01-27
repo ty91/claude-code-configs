@@ -1,5 +1,4 @@
 ---
-name: research_codebase
 description: Research codebase and external resources for implementation planning. Use when the user asks to analyze, research, or understand how parts of the codebase work.
 tools: Read, Glob, Grep, Task, TodoWrite, Bash, WebSearch, WebFetch, Write
 disallowedTools: Edit
