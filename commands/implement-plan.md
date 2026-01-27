@@ -5,18 +5,24 @@ description: Execute approved implementation plans phase by phase
 
 # Implement Plan
 
-You are tasked with implementing an approved technical plan from `thoughts/plans/`. These plans contain phases with specific changes and success criteria.
+You are tasked with implementing an approved technical plan. These plans contain phases with specific changes and success criteria.
+
+## Context
+
+- Git branch: !`git branch --show-current`
+
+Convert slashes to hyphens for the directory name (e.g., `feature/auth` → `feature-auth`). This determines the plan location: `.tasks/{branch-name}/plan.md`
 
 ## Getting Started
 
-When given a plan path:
-- Read the plan completely and check for any existing checkmarks (- [x])
-- Read all files mentioned in the plan
-- **Read files fully** - never use limit/offset parameters
-- Create a todo list to track your progress
-- Start implementing if you understand what needs to be done
+1. Locate the plan file at `.tasks/{branch-name}/plan.md`
+2. Read the plan completely and check for any existing checkmarks (- [x])
+3. Read all files mentioned in the plan
+4. **Read files fully** - never use limit/offset parameters
+5. Create a todo list to track your progress
+6. Start implementing if you understand what needs to be done
 
-If no plan path provided, ask for one.
+If the plan file doesn't exist, inform the user and suggest running `/create-plan` first.
 
 ## Implementation Philosophy
 
