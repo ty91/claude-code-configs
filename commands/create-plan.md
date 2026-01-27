@@ -42,15 +42,43 @@ Then wait for the user's input.
 3. **Present informed understanding and focused questions**:
    Based on research, present findings and ask only questions that require human judgment
 
-### Step 2: Research & Discovery
+### Step 2: Research & Discovery (Required)
+
+> **This step is MANDATORY regardless of task complexity.** Even for simple tasks, document your findings. The goal is traceability, not thoroughness.
+
+**Research output MUST be documented in `.tasks/{branch}/findings/`**
 
 1. **Create a research todo list** using TodoWrite to track exploration tasks
-2. **Spawn codebase-researcher for comprehensive research**:
-   - codebase-researcher covers all four perspectives: Location, Implementation, Patterns, and Dependencies
-   - It synthesizes findings into a structured document at `.tasks/{branch}/findings/`
+2. **Conduct research and document findings**:
+
+   **Option A: Using codebase-researcher** (for comprehensive research)
+   - Covers all four perspectives: Location, Implementation, Patterns, and Dependencies
+   - Automatically writes findings to `.tasks/{branch}/findings/`
    - **IMPORTANT**: codebase-researcher has limited context window. Pass clear, focused topics rather than broad, ambiguous ones. If the research scope is wide, split into multiple focused research tasks
+
+   **Option B: Using individual agents** (codebase-locator, codebase-analyzer, pattern-finder)
+   - You MUST synthesize their results into a findings document yourself
+   - Write to `.tasks/{branch}/findings/{topic-in-kebab-case}.md` with at minimum:
+     ```markdown
+     # Research Findings: [Topic]
+
+     ## Files Analyzed
+     - [List of key files examined with paths]
+
+     ## Key Discoveries
+     - [What you learned that informs the plan]
+
+     ## Reference Patterns
+     - [Existing patterns/implementations to follow]
+
+     ## Design Decisions
+     - [Choices made and rationale]
+     ```
+
 3. **Wait for research to complete** before proceeding
-4. **Review the research document** and present findings with design options and pros/cons
+4. **Review the findings document** and present findings with design options and pros/cons
+
+**DO NOT skip this step** based on perceived simplicity. If research was trivial, the findings document will be short—that's acceptable. What's not acceptable is having no documented rationale for the plan.
 
 ### Step 3: Plan Structure Development
 
@@ -165,6 +193,5 @@ Write the plan to `.tasks/{branch-name}/plan.md` (where slashes in branch name a
    - Defining API contracts or interfaces that must be exact
    - Logic is too tricky to explain clearly in words
    - A brief example significantly clarifies the intended approach
-
    For everything else, describe changes in plain language (e.g., "Add a validation function that checks X and Y" rather than writing the function).
-
+10. **Always Document Research**: Never skip Step 2. Research findings MUST exist in `.tasks/{branch}/findings/` before writing the plan. If research was simple, the document will be short—that's fine. No documented rationale = no plan.
