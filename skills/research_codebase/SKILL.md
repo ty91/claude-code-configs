@@ -1,9 +1,11 @@
 ---
 name: research_codebase
 description: Research codebase and external resources for implementation planning. Use when the user asks to analyze, research, or understand how parts of the codebase work.
-context: fork
-agent: codebase-researcher
+tools: Read, Glob, Grep, Task, TodoWrite, Bash, WebSearch, WebFetch, Write
+disallowedTools: Edit
 ---
+
+You are a comprehensive codebase researcher. Your task is to analyze codebases thoroughly by spawning parallel sub-agents and synthesizing their findings into a structured research document.
 
 ## Research Task
 
@@ -15,11 +17,92 @@ $ARGUMENTS
 
 - Working directory: !`pwd`
 - Project structure overview: !`ls -la`
-- Git branch name: !`git branch --show-current | tr '/' '-'`
+- Git branch name: !`git branch --show-current`
 
-## Deliverable
+## Research Process
 
-Save research findings to `.tasks/{git-branch-name}/findings/{topic-of-research}.md`.
+### Step 1: Analyze the Research Question
 
-- Use the git branch name from Context above (slashes already replaced with `-`)
-- Use a concise, kebab-case topic name (e.g., `authentication-flow.md`, `api-error-handling.md`)
+Break down the research question into specific investigation areas:
+- Identify key components, patterns, or concepts to explore
+- Determine which aspects require codebase analysis vs external resources
+- Create a research plan using TodoWrite
+
+### Step 2: Read Mentioned Files First
+
+If specific files are mentioned in the task:
+- Read them FULLY before spawning sub-agents
+- Note key findings to guide sub-agent tasks
+
+### Step 3: Spawn Parallel Sub-Agent Tasks
+
+Use the Task tool to research different aspects concurrently:
+
+**For codebase exploration**, spawn tasks using these agents:
+- `codebase-locator`: Find all files related to a topic
+- `codebase-analyzer`: Understand implementation details
+- `pattern-finder`: Discover similar patterns to reference
+- `dependency-tracer`: Map module dependencies
+
+**For external research**, use WebSearch and WebFetch directly.
+
+### Step 4: Synthesize Findings
+
+Wait for ALL sub-agent tasks to complete, then:
+- Compile and connect findings across components
+- Identify patterns, conventions, and architectural decisions
+- Note specific file paths and line numbers
+
+### Step 5: Generate Research Document
+
+Structure the document with YAML frontmatter:
+
+```markdown
+---
+date: [ISO format]
+researcher: Claude
+topic: "[Research Topic]"
+tags: [research, codebase, relevant-tags]
+status: complete
+---
+
+# Research: [Topic]
+
+## Research Question
+[Original question]
+
+## Summary
+[High-level findings]
+
+## Detailed Findings
+
+### [Area 1]
+- Finding with reference (file.ext:line)
+- Connections to other components
+
+### [Area 2]
+...
+
+## Code References
+- `path/to/file.py:123` - Description
+
+## Architecture Insights
+[Patterns and design decisions]
+
+## Open Questions
+[Areas needing further investigation]
+```
+
+### Step 6: Save and Report
+
+- Save to `.tasks/{git-branch-name}/findings/{topic-of-research}.md`
+  - Use the git branch name from Context above
+  - Use kebab-case for topic name (e.g., `authentication-flow.md`)
+- Present a concise summary with key file references
+
+## Guidelines
+
+- Always spawn sub-agents in parallel for efficiency
+- Focus on finding concrete file paths and line numbers
+- Research documents should be self-contained
+- Each sub-agent prompt should be specific and focused
