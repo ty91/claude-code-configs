@@ -29,58 +29,43 @@ I'll analyze this information and work with you to create a comprehensive plan.
 
 Then wait for the user's input.
 
+## Research Guidelines
+
+Use `codebase-researcher` whenever you need to understand the codebase. Research findings are automatically saved to `.tasks/{branch}/findings/`.
+
+**When to research:**
+- Before making design decisions
+- When exploring unfamiliar areas of the codebase
+- When you need to find existing patterns to follow
+- When uncertain about implementation approach
+
+**Good practices:**
+```
+# Focused, specific questions (Good)
+"로그인 플로우에서 세션이 어떻게 관리되는지 분석해줘"
+"ImagePickerBottomSheet 컴포넌트의 구조와 사용 패턴을 분석해줘"
+"GraphQL mutation 에러 핸들링 패턴을 찾아줘"
+
+# Too broad (Avoid)
+"인증 시스템 전체를 분석해줘"
+"앱 아키텍처를 설명해줘"
+```
+
+**Important notes:**
+- codebase-researcher has a limited context window—split broad topics into focused queries
+- Multiple research documents are fine; each becomes a reference for the plan
+- When you have multiple research topics, run them in parallel for efficiency
+- Research documents contain **facts about existing code**, not design proposals
+
 ## Process Steps
 
 ### Step 1: Context Gathering & Initial Analysis
 
 1. **Read all mentioned files immediately and FULLY**
-2. **Spawn initial research tasks to gather context**:
-   - Use codebase-locator to find all related files
-   - Use codebase-analyzer to understand current implementation
-   - Use pattern-finder to find similar features to model after
+2. **Use codebase-researcher** to explore related areas of the codebase
+3. **Present informed understanding and focused questions**: Based on research, ask only questions that require human judgment
 
-3. **Present informed understanding and focused questions**:
-   Based on research, present findings and ask only questions that require human judgment
-
-### Step 2: Research & Discovery (Required)
-
-> **This step is MANDATORY regardless of task complexity.** Even for simple tasks, document your findings. The goal is traceability, not thoroughness.
-
-**Research output MUST be documented in `.tasks/{branch}/findings/`**
-
-1. **Create a research todo list** using TodoWrite to track exploration tasks
-2. **Conduct research and document findings**:
-
-   **Option A: Using codebase-researcher** (for comprehensive research)
-   - Covers all four perspectives: Location, Implementation, Patterns, and Dependencies
-   - Automatically writes findings to `.tasks/{branch}/findings/`
-   - **IMPORTANT**: codebase-researcher has limited context window. Pass clear, focused topics rather than broad, ambiguous ones. If the research scope is wide, split into multiple focused research tasks
-
-   **Option B: Using individual agents** (codebase-locator, codebase-analyzer, pattern-finder)
-   - You MUST synthesize their results into a findings document yourself
-   - Write to `.tasks/{branch}/findings/{topic-in-kebab-case}.md` with at minimum:
-     ```markdown
-     # Research Findings: [Topic]
-
-     ## Files Analyzed
-     - [List of key files examined with paths]
-
-     ## Key Discoveries
-     - [What you learned that informs the plan]
-
-     ## Reference Patterns
-     - [Existing patterns/implementations to follow]
-
-     ## Design Decisions
-     - [Choices made and rationale]
-     ```
-
-3. **Wait for research to complete** before proceeding
-4. **Review the findings document** and present findings with design options and pros/cons
-
-**DO NOT skip this step** based on perceived simplicity. If research was trivial, the findings document will be short—that's acceptable. What's not acceptable is having no documented rationale for the plan.
-
-### Step 3: Plan Structure Development
+### Step 2: Plan Structure Development
 
 Once aligned on approach:
 ```
@@ -97,7 +82,11 @@ Here's my proposed plan structure:
 Does this phasing make sense?
 ```
 
-### Step 4: Detailed Plan Writing
+### Step 3: Detailed Plan Writing
+
+**Before writing the plan:**
+1. Read all documents in `.tasks/{branch}/findings/`
+2. These research findings should inform your plan and be referenced where relevant
 
 Write the plan to `.tasks/{branch-name}/plan.md` (where slashes in branch name are converted to hyphens):
 
@@ -167,13 +156,19 @@ Write the plan to `.tasks/{branch-name}/plan.md` (where slashes in branch name a
 [If applicable, how to handle existing data/systems]
 
 ## References
-- [List of files read during planning]
+
+### Research Findings
+- [./findings/topic-name.md](./findings/topic-name.md) - Brief description
+- [./findings/another-topic.md](./findings/another-topic.md) - Brief description
+
+### Other Sources
+- [List of additional files read during planning]
 - [Documentation consulted]
 - [External resources referenced]
 - [Related issues/PRs]
 ```
 
-### Step 5: Review and Iterate
+### Step 4: Review and Iterate
 
 1. Save the plan and present location to user
 2. Iterate based on feedback
@@ -194,4 +189,4 @@ Write the plan to `.tasks/{branch-name}/plan.md` (where slashes in branch name a
    - Logic is too tricky to explain clearly in words
    - A brief example significantly clarifies the intended approach
    For everything else, describe changes in plain language (e.g., "Add a validation function that checks X and Y" rather than writing the function).
-10. **Always Document Research**: Never skip Step 2. Research findings MUST exist in `.tasks/{branch}/findings/` before writing the plan. If research was simple, the document will be short—that's fine. No documented rationale = no plan.
+10. **Research Before Planning**: Use codebase-researcher to understand the codebase before making design decisions. Research findings in `.tasks/{branch}/findings/` must be referenced in the plan's References section.
