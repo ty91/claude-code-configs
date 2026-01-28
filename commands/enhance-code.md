@@ -35,19 +35,44 @@ Then proceed with Step 1.
 
 ## Process Steps
 
-### Step 1: Verify Implementation Status
+### Step 1: Gather Context
 
 1. Read the plan file at `.tasks/{branch-name}/plan.md`
-2. Identify completed phases (look for `[x]` checkmarks)
-3. Run `git diff main...HEAD` to see all changes on this branch
+2. Identify completed phases (look for `[x]` checkmarks) and extract:
+   - Phase titles and descriptions
+   - Success criteria for each completed phase
+3. Run `git diff main...HEAD --stat` to get the list of modified files
 4. If no completed phases found, inform the user and suggest running `/implement-plan` first
 
 ### Step 2: Code Review
 
-1. **Spawn code-reviewer agent** with clear context:
-   - Which phases were completed
-   - What files were modified
-   - Request structured review output
+Using the context gathered in Step 1, spawn the code-reviewer agent:
+
+1. **Spawn code-reviewer agent** with explicit plan context:
+
+   ```
+   Review Mode: Plan-based implementation review
+
+   Branch: [branch-name]
+   Plan File: .tasks/{branch-name}/plan.md
+
+   Completed Phases:
+   [Use data from Step 1]
+   - Phase N: [phase title]
+     - Description: [brief description from plan]
+     - Success Criteria: [list from plan]
+
+   Files Modified:
+   [Use git diff --stat output from Step 1]
+
+   Instructions:
+   1. Run `git diff main...HEAD` to get the full diff content
+   2. Read modified files as needed for additional context
+   3. Evaluate implementation against the plan requirements above
+   4. Focus on: plan alignment, code quality, security vulnerabilities, project patterns
+   5. Include "Requirements Alignment" section in your report
+   6. Produce a code review report (Critical Issues, Warnings, Suggestions)
+   ```
 
 2. **Wait for review completion** and analyze results
 
