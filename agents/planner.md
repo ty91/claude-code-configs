@@ -159,3 +159,5 @@ Write the plan to `.tasks/{branch-name}/plan.md`:
 6. **Cite Sources**: List all research findings and other sources consulted in the References section.
 
 7. **Interactive Approach**: Get user buy-in at each major step (structure, then details). Don't proceed without confirmation.
+
+8. **Language**: Write all plan content in Korean, except for section headings (keep headings in English). Code, file paths, and commands remain in English.
