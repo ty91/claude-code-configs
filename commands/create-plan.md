@@ -71,129 +71,39 @@ Each codebase-researcher call should answer ONE specific question. If you have m
 2. **Use codebase-researcher** to explore related areas of the codebase
 3. **Present informed understanding and focused questions**: Based on research, ask only questions that require human judgment
 
-### Step 2: Plan Structure Development
+### Step 2: Invoke Planner
 
-Once aligned on approach:
-```
-Here's my proposed plan structure:
+Once research is complete, invoke the `planner` subagent to handle plan creation:
 
-## Overview
-[1-2 sentence summary]
+1. **Gather context for planner**:
+   - Branch name (converted to directory format)
+   - Summary of user requirements
+   - Path to findings directory: `.tasks/{branch-name}/findings/`
+   - Any additional considerations or emphasis points
 
-## Implementation Phases:
-- [ ] 1. [Phase name] - [what it accomplishes]
-- [ ] 2. [Phase name] - [what it accomplishes]
-- [ ] 3. [Phase name] - [what it accomplishes]
+2. **Call planner** (foreground, not background):
+   ```
+   Task tool with subagent_type: planner
 
-Does this phasing make sense?
-```
+   Prompt should include:
+   - Branch name: {branch-name}
+   - Task requirements: {summary of what user wants to implement}
+   - Findings directory: .tasks/{branch-name}/findings/
+   - Additional notes: {any constraints, preferences, or emphasis from the conversation}
+   ```
 
-### Step 3: Detailed Plan Writing
+3. **Let planner handle**:
+   - Reading research findings
+   - Proposing plan structure to user
+   - Writing detailed plan
+   - Iterating based on user feedback
 
-**Before writing the plan:**
-1. Read all documents in `.tasks/{branch}/findings/`
-2. These research findings should inform your plan and be referenced where relevant
-
-Write the plan to `.tasks/{branch-name}/plan.md` (where slashes in branch name are converted to hyphens):
-
-```markdown
-# [Feature/Task Name] Implementation Plan
-
-## Overview
-[Brief description of what we're implementing and why]
-
-## Current State Analysis
-[What exists now, what's missing, key constraints discovered]
-
-## Desired End State
-[Specification of the desired end state and how to verify it]
-
-## What We're NOT Doing
-[Explicitly list out-of-scope items]
-
-## Implementation Approach
-[High-level strategy and reasoning]
-
-## - [ ] Phase 1: [Descriptive Name]
-
-### Overview
-[What this phase accomplishes]
-
-### Changes Required:
-
-#### 1. [Component/File Group]
-**File**: `path/to/file.ext`
-**Changes**: [Summary of changes]
-
-### Success Criteria:
-
-#### Automated Verification:
-- [ ] Tests pass: `npm test`
-- [ ] Type checking passes: `npm run typecheck`
-- [ ] Linting passes: `npm run lint`
-
-#### Manual Verification:
-- [ ] Feature works as expected in UI
-- [ ] Performance is acceptable
-- [ ] No regressions in related features
-
----
-
-## - [ ] Phase 2: [Descriptive Name]
-[Similar structure...]
-
-## Testing Strategy
-
-### Unit Tests:
-- [What to test]
-- [Key edge cases]
-
-### Integration Tests:
-- [End-to-end scenarios]
-
-### Manual Testing Steps:
-1. [Specific verification step]
-2. [Another verification step]
-
-## Performance Considerations
-[Any performance implications or optimizations needed]
-
-## Migration Notes
-[If applicable, how to handle existing data/systems]
-
-## References
-
-### Research Findings
-- [./findings/topic-name.md](./findings/topic-name.md) - Brief description
-- [./findings/another-topic.md](./findings/another-topic.md) - Brief description
-
-### Other Sources
-- [List of additional files read during planning]
-- [Documentation consulted]
-- [External resources referenced]
-- [Related issues/PRs]
-```
-
-### Step 4: Review and Iterate
-
-1. Save the plan and present location to user
-2. Iterate based on feedback
-3. Continue refining until satisfied
+The planner will interact directly with the user via `AskUserQuestion` and save the final plan to `.tasks/{branch-name}/plan.md`.
 
 ## Important Guidelines
 
-1. **Be Skeptical**: Question vague requirements, identify issues early
-2. **Be Interactive**: Get buy-in at each major step
-3. **Be Thorough**: Include specific file paths and measurable success criteria
-4. **Be Practical**: Focus on incremental, testable changes
-5. **Track Progress**: Use TodoWrite throughout planning
-6. **No Open Questions**: Resolve all questions before finalizing plan
-7. **Ignore Other Plans**: Do NOT read or reference other existing plan files in `.tasks/`
-8. **Cite Sources**: At the end of the plan document, include a "References" section listing all sources consulted during planning (e.g., files read, documentation, external resources, related issues/PRs)
-9. **Minimize Code in Plans**: Plans are blueprints, not implementations. Only include code blocks when:
-   - Defining API contracts or interfaces that must be exact
-   - Logic is too tricky to explain clearly in words
-   - A brief example significantly clarifies the intended approach
-   For everything else, describe changes in plain language (e.g., "Add a validation function that checks X and Y" rather than writing the function).
-10. **Research Before Planning**: Use codebase-researcher to understand the codebase before making design decisions. Research findings in `.tasks/{branch}/findings/` must be referenced in the plan's References section.
-11. **No Plan Mode Tools**: Do NOT use `EnterPlanMode` or `ExitPlanMode` tools. This command handles planning independently.
+1. **Be Skeptical**: Question vague requirements, identify issues early during context gathering
+2. **Track Progress**: Use TodoWrite throughout planning
+3. **Ignore Other Plans**: Do NOT read or reference other existing plan files in `.tasks/`
+4. **Research Before Planning**: Use codebase-researcher to understand the codebase before invoking planner
+5. **No Plan Mode Tools**: Do NOT use `EnterPlanMode` or `ExitPlanMode` tools. This command handles planning independently.
